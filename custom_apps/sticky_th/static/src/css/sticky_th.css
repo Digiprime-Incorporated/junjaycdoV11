@@ -1,0 +1,66 @@
+/* normalize bootstrap here */
+.table-bordered > thead > tr > th, 
+.table-bordered > thead > tr > td {
+    border-bottom-width: 1px; /*don't use 2px*/
+}
+.table-bordered > thead > tr:last-child > th, 
+.table-bordered > thead > tr:last-child > td, 
+.table-bordered > thead > tr:first-child > th:first-child {
+    border-bottom-width: 2px;
+}
+
+.table > thead:first-child > tr:first-child > th,
+.table > thead.sticky-TH > tr > th {
+    border-top:0; /* apply to both as in `bootstrap thead:first-child > tr:first-child > th */
+}
+@media screen and (max-width: 767px) {
+.table-responsive {
+    border: none;
+}
+}
+/*
+thead.tableFloatingHeaderOriginal {
+    box-shadow: 1px 1px 9px rgba(0,0,0,.5);
+}
+*/
+
+/** fields */
+.o_setting_box.checked_ex .testex {
+  border: 2px solid gray;
+  span:5px;
+}
+.o_setting_box.checked_ex .testex.iftrue {
+}
+
+/* STACK -- very important while th is clickable */
+thead.sticky-TH {
+    z-index: 1;
+}
+thead.sticky-TH.clonned-TH {
+    z-index: 0;
+}
+
+/** PIVOT --- in reviewing */
+.o_pivot {
+  overflow: initial; /* mean dont overflow here, let the o_content does */
+}
+
+.o_pivot tr .ori {
+    /* background:yellow; */
+    position: absolute;
+    /* opacity: .5; */
+    z-index: 2;
+    box-shadow: 4px 8px 10px rgba(0,0,0,.5);
+    }
+.o_pivot tr .clonned {
+    /* background:lime !important; */
+    opacity: 0;
+    z-index: 1;
+    }
+    
+
+.o_pivot table tbody tr:hover .o_pivot_header_cell_opened, 
+.o_pivot table tbody tr:hover .o_pivot_header_cell_closed, 
+.o_pivot table tbody tr:hover .o_pivot_measure_row {
+    background: inherit;
+}

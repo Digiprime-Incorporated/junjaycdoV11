@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="report_check_voucher">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="web.html_container">
+	                <t t-call="web.external_layout">
+	                    <div class="page">
+	                        <div>
+		                        <div class="col-xs-9 " >
+			                         <h4 style="margin-left:1px;" >Date: <span t-field="o.payment_date"/><br/></h4> 
+			                         <h4 style="margin-left:1px;">Payee: <span t-field="o.partner_id.name" /> <br/> 
+		                                 <span style="margin-left:10%;" t-field="o.partner_id.street"/>,
+		                                 <span t-field="o.partner_id.city"/>
+		                                 <span  t-field="o.partner_id.state_id.name"/><br/>
+		                                 <span style="margin-left:10%;" t-field="o.partner_id.country_id.name"/> <br/></h4>
+			                         <h4>Amount in Figures : <span t-field ="o.check_amount" /></h4>  
+			                         <h4>Amount in Words : ***<span t-field="o.check_amount_in_word"/>***</h4>
+			                         <h4>Check# :<span t-field="o.communication"/></h4>
+			                         <h4>Remarks :<span t-field="o.payment_reference"/></h4><br/>
+	                          </div>
+	                          <div class="row">
+		                         	<h4>CHECK VOUCHER</h4>
+		                         	<h5><span t-field="o.name"/> </h5>
+		                         </div>
+	                       </div>
+	                       <h4>Journal Entries :</h4>
+	                       <table class="table" >
+	                        	<thead>
+			                         <th>ACCOUNT</th>
+			                         <th>PARTICULARS</th>
+			                         <th>DEBIT</th>
+			                         <th>CREDIT</th>
+		                         </thead>
+		                         <tbody>
+			                         <t t-foreach="payment_dict[o.id]" t-as="line1">
+				                         <t t-foreach="line1"   t-as="line">
+											<tr>
+												<td>
+													<span>
+														<t t-esc = "line['account_id'].code + line['account_id'].name" />
+													</span>
+												</td>
+												<td> 
+													<span>
+														<t t-esc="line['name']" />
+													</span>
+												</td>
+												<td>
+													<span>
+														<t t-esc="line['debit']" />
+													</span>
+												</td>
+												<td>
+													<span>
+														<t t-esc="line['credit']" />
+													</span>
+												</td>
+											</tr>
+										</t>
+									</t>
+			                        <tr>
+				                         <td>TOTALS</td>
+				                         <td></td>
+				                         <td><t t-esc ="payment_dict['debit'+str(o.id)]" /></td>
+				                         <td><t t-esc ="payment_dict['credit'+str(o.id)]" /></td>
+			                         </tr>
+			                         <hr></hr>
+		                         </tbody>
+	                  		</table>
+				      </div>
+					</t>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>
+						 		
+						

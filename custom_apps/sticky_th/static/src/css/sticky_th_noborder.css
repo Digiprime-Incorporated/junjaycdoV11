@@ -1,0 +1,7 @@
+.table-bordered > thead > tr:last-child > th, 
+.table-bordered > thead > tr:last-child > td, 
+.table-bordered > thead > tr:first-child > th:first-child,
+.table > thead.sticky-TH,
+.table > thead.sticky-TH > tr > th {
+    border-bottom: none;
+}

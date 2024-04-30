@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <template id="web.login" name="Login" >
+   <style>
+
+
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css);
+
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+/*Don't forget to add Font Awesome CSS : */
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css);
+
+/* zocial */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; 
+}
+
+
+h2 {
+  color:rgba(255,255,255,.8);
+  margin-left:80px;
+  font-size: 15px;
+  padding:10px;
+  color:rgba(255,255,255,.8);
+}
+
+body {
+ 
+  background: url(/briq_static_web_login/static/src/img/elms.jpg)no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+   background-size:cover;
+  
+   
+}
+
+form {
+  position:relative;
+  margin: 120px auto;
+  width: 390px;
+  height: auto;
+  float:right;
+
+}
+
+wrap-input100 {
+  padding:14px;
+  border-radius:7px;
+  border:0px;
+  display: block;
+  margin: 10px;
+  padding-left:30px ;
+  width: 180px;  
+  color:white;
+  font-size:12px;
+  height: 40px;
+  margin-left: 150px;
+}
+
+input:focus {
+  outline-color: rgba(0,0,0,0);
+  color: #e74c3c;
+}
+
+
+
+
+input[type=password]:focus {
+  
+  
+}
+
+button {
+  float:right;
+  height: 90px;
+  width: 57px;
+  border: 0px;
+  background: #e74c3c;
+  border-radius:7px;
+  padding-top: 20px;
+  font-size:22px;
+  background-color:#000d273d; 
+  color: white; 
+  border: 2px solid #0d8048;
+}
+.button1:hover{
+  background-color:#f00932;
+  color: white;
+}
+
+
+
+/*==================================================================
+[ Database ]*/
+
+
+.o_database_list {
+  display: inline-block;
+    vertical-align: middle;
+    padding: 0px;
+    border-radius: 5px;
+    float: right;
+    opacity: 0.9;
+    margin: 10px;
+}
+
+.o_database_list input,
+.o_database_list select {
+  background-color: #05206869  !important;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+ 
+  border-radius: 0px;
+  color: #f0ebeb;
+  font-size: 18px;
+  font-weight: 300;
+  transition: border-color 0.7s ease;
+  box-shadow: none!important;
+  text-align: center;
+  border-color: #119b4c;
+ 
+}
+
+.o_database_list input:focus,
+.o_database_list select:focus {
+  border-bottom: 1px solid #e0953e;
+  outline: 0 none;
+}
+
+a.btn-select {
+    
+    background-color:#06ce9624; 
+    color: #eee; 
+    border: 1px solid #06ce96cf;
+}
+.o_database_list .btn-primary {
+  color: #FFF;
+    background-color: #BBB;
+    border: 1px solid #CCC;
+    text-transform: uppercase;
+    transition: background-color 0.5s ease;
+}
+
+.o_database_list .btn-primary:hover,
+a.btn-select:hover {
+  background-color: #f00932;
+  color: #FFF;
+}
+
+/*------------------------------------------------------------------*/
+/* Create three equal columns that floats next to each other */
+.column {
+  padding-top: 270px;
+  float: right;
+  margin-left:550px;
+  padding-left: 130px
+  width: 33.33%;
+}
+
+/* ----------- new css added ----------- */
+.boxmodel {
+    width: 1368px;
+    border-top: 2px solid #07841b;
+    padding: 10px ;
+    position: relative;
+    background-image: linear-gradient(#000d35, #169f470d);
+    padding-left:40px;
+}
+.content {
+  display: inline-block;
+  vertical-align: top;
+}
+.title, .sub-title {
+  margin: 0;
+  padding: 3px 10px 3px 0;
+}
+.title {
+  font-size: 17px;
+  font-weight: bold;
+}
+.sub-title {
+  font-weight: bold;
+  color: #3F3F3F;
+}
+.box {
+  display: inline-block;
+  vertical-align: top;
+  
+}
+/* ----------- new css added --------------*/
+
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
+@media screen and (max-width: 800px) {
+  .column {
+    width: 100%;
+  }
+}
+
+
+
+</style>
+ <t t-call="web.login_layout">
+
+
+<body>
+<div  class="column">
+  
+    <div class="boxmodel"> 
+    <div class="content">
+     <div class="box">
+     <img src="/briq_static_web_login/static/src/img/tuko.png" style="margin:0px;width:100px;"/>
+    </div>
+    </div>
+    <div class="content">
+     <p class="title"><strong style="color:green;font-size:20px;line-height:20px;">LANANG PREMIER</strong></p>
+      <p class="sub-title"><b style="color:blue;font-size:20px;line-height:20px;">DOCTORS HOSTPITAL INC.</b></p> 
+      <em style="color:green;font-size:18px;line-height:20px;">Medical Resort and Wellness Center</em>
+    </div>
+      <img src="/briq_static_web_login/static/src/img/briq.png" style="float:right;width:110px;height:90px;padding-right:20px;padding-bottom:10px;"/> 
+
+  </div>
+   <!-- Section for Database --> 
+   <form class="o_database_list field-db" role="form" t-attf-action="/web/login{{ '?debug' if debug else '' }}" method="post" onsubmit="this.action = this.action + location.hash">
+                  <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>  
+                  <div class="o_database_list field-db" t-if="databases and len(databases) &gt; 1">
+                      <div class="input-group" style="padding:8px; margin-left:50px;">
+                            <input type="text" style="width:250px" name="db" t-att-value="request.db" id="db" class="form-control" required="required" readonly="readonly"/>
+                            <span class="input-group-btn ">
+                      <a href="/web/database/selector" class="btn btn-default btn-select">Select <i class="fa fa-database"></i></a>
+                      </span>
+                      </div>
+                  </div>
+                   <!-- Section for Button Login -->           
+                  <p class="alert alert-danger" t-if="error">
+                        <t t-esc="error"/>
+                  </p>
+                  <p class="alert alert-success" t-if="message">
+                  <t t-esc="message"/>
+                  </p>
+                    <!-- end -->
+    <!-- button section -->
+    <input name="redirect" type="hidden">
+    <button class="button button1"  type= "submit"> <span class="entypo-lock " style="color:silver;" >LOGIN<i class="fa fa-lock">
+        </i></span></button>
+    </input>
+    <!-- end -->
+    <div class="wrap-input100" >
+         <input type="text" style="margin-left:70px;margin-bottom:15px;background-color: #05883a;" class="user"  placeholder="username..." name="login" t-att-value="login" id="login"   required="required" autofocus="autofocus"/>
+    </div>
+    <div class="wrap-input100">
+         <input type="password" style="margin-left:70px;background-color: #05883a;" class="pass" placeholder="password..." name="password" id="password" required="required" t-att-autofocus="'autofocus' if login else None"/>
+    </div>
+   
+     <div class="text-center" t-if="not disable_footer">
+                        <a href="" target="_blank" style="color:gray;">Configured by: <span>Digiprime Inc.</span></a>
+    </div>
+  </form>
+ 
+  </div>
+ </body>
+ </t>
+</template>
+</odoo>

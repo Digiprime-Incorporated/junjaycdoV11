@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?> 
+
+<odoo>
+	<data>
+
+		<template id="sh_barcode_in_reports_account_invoice_report" inherit_id="account.report_invoice_document">			
+	 		<xpath expr="//h2" position="inside">
+				<span t-if="o.number">
+					<img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128',o.number, 600, 100)" 
+					style="width:360px;height:60px" class="pull-right mb16"/>
+	 			</span>
+			</xpath>
+		</template>
+		
+	</data>
+</odoo>

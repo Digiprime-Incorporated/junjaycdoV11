@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report
+			id="account_voucher"
+			model="account.payment"
+			string="Print Voucher"
+			report_type="qweb-pdf"
+			file="print_voucher.report_voucher"
+			name="print_voucher.report_voucher"
+		/>
+	</data>
+</odoo>

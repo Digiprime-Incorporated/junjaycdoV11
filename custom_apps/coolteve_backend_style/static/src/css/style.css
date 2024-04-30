@@ -1,0 +1,55 @@
+/* @import url(
+  https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,
+  400,
+  600,
+  700,
+  300italic,
+  400italic,
+  600italic
+);
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+#oe_main_menu_navbar {
+  background-color: #3c8dbc;
+  color: #fff;
+}
+
+.navbar {
+  min-height: 50px;
+}
+
+.o_web_client .navbar li > a {
+  padding: 4px 8px;
+  margin-top: 0px;
+  font-size: 13px;
+}
+
+.navbar-inverse {
+  background-color: #3c8dbc;
+  color: #fff;
+  border-color: #3c8dbc;
+}
+
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:active,
+.navbar-inverse .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-nav > .active > a:focus .navbar-inverse {
+  background-color: #337ab7;
+  color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:active,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #fff;
+  background-color: #337ab7;
+} */

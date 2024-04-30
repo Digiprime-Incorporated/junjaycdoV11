@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+   <template id="web.login" name="Login" >
+   <style>
+
+
+
+
+/*----------------------------------------
+[ restyle this.. ]*/
+
+* {
+  margin: 0px; 
+  padding: 0px; 
+  box-sizing: border-box;
+}
+body{
+    background-color: black;
+}
+
+
+
+
+/*---------------------------------------------*/
+input {
+  outline: none;
+  border: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+textarea {
+  outline: none;
+  border: none;
+}
+
+textarea:focus, input:focus {
+  border-color: transparent !important;
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; }
+input:focus::-moz-placeholder { color:transparent; }
+input:focus:-ms-input-placeholder { color:transparent; }
+
+textarea:focus::-webkit-input-placeholder { color:transparent; }
+textarea:focus:-moz-placeholder { color:transparent; }
+textarea:focus::-moz-placeholder { color:transparent; }
+textarea:focus:-ms-input-placeholder { color:transparent; }
+
+input::-webkit-input-placeholder {color: #cccccc;}
+input:-moz-placeholder {color: #cccccc;}
+input::-moz-placeholder {color: #cccccc;}
+input:-ms-input-placeholder {color: #cccccc;}
+
+textarea::-webkit-input-placeholder {color: #cccccc;}
+textarea:-moz-placeholder {color: #cccccc;}
+textarea::-moz-placeholder {color: #cccccc;}
+textarea:-ms-input-placeholder {color: #cccccc;}
+
+
+
+
+
+/*//////////////////////////////////////////////////////////////////
+[ login form code]*/
+
+
+.container-login100 {
+  width: 100%;  
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+
+.wrap-login100 {
+  width: 420px;
+  min-height: 100vh;
+  background:#11111136;
+  border-radius: 1px;
+  position: absolute;
+  border-top: 2px solid #06ce96;
+  right:0;
+
+}
+
+.p-r-50 {
+    padding-right: 20px;
+}
+.p-l-50 {
+    padding-left: 20px;
+}
+.p-b-50 {
+    padding-bottom: 10px;
+}
+.p-t-72 {
+    padding-top: 10px;
+}
+
+
+
+/*==================================================================
+[ Database ]*/
+
+
+.o_database_list {
+  display: inline-block;
+    vertical-align: middle;
+    padding: 0px;
+   
+    border-radius: 5px;
+    float: none;
+    
+    opacity: 0.9;
+}
+
+.o_database_list input,
+.o_database_list select {
+  background-color: transparent !important;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+ 
+  border-radius: 0px;
+  color: #f00828;
+  font-size: 18px;
+  font-weight: 300;
+  transition: border-color 0.7s ease;
+  box-shadow: none!important;
+  text-align: center;
+  border-color: #17f5d5;
+ 
+}
+
+.o_database_list input:focus,
+.o_database_list select:focus {
+  border-bottom: 1px solid #e0953e;
+  outline: 0 none;
+}
+
+a.btn-select {
+    
+    background-color:#06ce9624; 
+    color: #eee; 
+    border: 1px solid #06ce96cf;
+}
+.o_database_list .btn-primary {
+  color: #FFF;
+    background-color: #BBB;
+    border: 1px solid #CCC;
+    text-transform: uppercase;
+    transition: background-color 0.5s ease;
+}
+
+.o_database_list .btn-primary:hover,
+a.btn-select:hover {
+  background-color: #f00932;
+  color: #FFF;
+}
+
+
+
+/*------------------------------------------------------------------
+[ Input txt username and password ]*/
+
+.wrap-input100 {
+  width: 300px;
+  position: relative;
+  border-bottom: 1px solid #06ce96;
+  margin-bottom: 0px;
+  padding-left: 40px;
+  margin-left: 40px;
+  text-align: center;
+}
+
+.label-input100 {
+   font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  color: #fbf7f7a6;
+  line-height: 1.2;
+  padding-left: 2px;
+  padding-top: 15px;
+}
+
+.input100 {
+  display: block;
+  width: 100%;
+  height: 22px;
+  background: transparent;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: #f52332;
+  line-height: 1.2;
+  padding: 0 2px;
+  box-shadow: 0 0 1.5px 1px #fefefe00;
+}
+
+.focus-input100 {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.focus-input100::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+
+  background: #18dea7;
+  background: -webkit-linear-gradient(45deg, #d5007d, #e53935);
+  background: -o-linear-gradient(45deg, #d5007d, #e53935);
+  background: -moz-linear-gradient(45deg, #d5007d, #e53935);
+  background: linear-gradient(45deg, #d5007d, #e53935);
+}
+
+
+.input100:focus + .focus-input100::before {
+  width: 100%;
+}
+
+.has-val.input100 + .focus-input100::before {
+  width: 100%;
+}
+
+
+/*------------------------------------------------------------------
+[ Button ]*/
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 20px 145px;
+  height: 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button1{
+  background-color:#06ce9624; 
+  color: #eee; 
+  border: 2px solid #06ce96cf;
+   padding: 20px 145px;
+}
+
+.button1:hover{
+  background-color: #06ce96b3;
+  color: white;
+}
+
+
+
+
+
+/*------------------------------------------------------------------
+[ slideshow code ]*/
+
+
+.cb-slideshow,
+.cb-slideshow:after { 
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 0; 
+}
+.cb-slideshow:after { 
+    content: '';
+    background: transparent url(../images/pattern.png) repeat top left; 
+}
+.cb-slideshow li span { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: transparent;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: none;
+    opacity: 0;
+    z-index: 0;
+  -webkit-backface-visibility: hidden;
+    -webkit-animation: imageAnimation 36s linear infinite 0s;
+    -moz-animation: imageAnimation 36s linear infinite 0s;
+    -o-animation: imageAnimation 36s linear infinite 0s;
+    -ms-animation: imageAnimation 36s linear infinite 0s;
+    animation: imageAnimation 36s linear infinite 0s; 
+}
+.cb-slideshow li div { 
+    z-index: 1000;
+    position: absolute;
+    bottom: 30px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    color: #fff;
+    -webkit-animation: titleAnimation 36s linear infinite 0s;
+    -moz-animation: titleAnimation 36s linear infinite 0s;
+    -o-animation: titleAnimation 36s linear infinite 0s;
+    -ms-animation: titleAnimation 36s linear infinite 0s;
+    animation: titleAnimation 36s linear infinite 0s; 
+}
+.cb-slideshow li div h3 { 
+    font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+    font-size: 240px;
+    padding: 0;
+    line-height: 200px; 
+}
+.cb-slideshow li:nth-child(1) span { 
+    background-image: url(/obione_web_login/static/src/img/ok.jpg) 
+}
+.cb-slideshow li:nth-child(2) span { 
+    background-image: url(/obione_web_login/static/src/img/h.jpg);
+    -webkit-animation-delay: 6s;
+    -moz-animation-delay: 6s;
+    -o-animation-delay: 6s;
+    -ms-animation-delay: 6s;
+    animation-delay: 6s; 
+}
+.cb-slideshow li:nth-child(3) span { 
+    background-image: url(/obione_web_login/static/src/img/i.jpg);
+    -webkit-animation-delay: 12s;
+    -moz-animation-delay: 12s;
+    -o-animation-delay: 12s;
+    -ms-animation-delay: 12s;
+    animation-delay: 12s; 
+}
+.cb-slideshow li:nth-child(4) span { 
+    background-image: url(/obione_web_login/static/src/img/ko.jpg);
+    -webkit-animation-delay: 18s;
+    -moz-animation-delay: 18s;
+    -o-animation-delay: 18s;
+    -ms-animation-delay: 18s;
+    animation-delay: 18s; 
+}
+.cb-slideshow li:nth-child(5) span { 
+    background-image: url(/obione_web_login/static/src/img/k.jpg);
+    -webkit-animation-delay: 24s;
+    -moz-animation-delay: 24s;
+    -o-animation-delay: 24s;
+    -ms-animation-delay: 24s;
+    animation-delay: 24s; 
+}
+.cb-slideshow li:nth-child(6) span { 
+    background-image: url(/obione_web_login/static/src/img/l.jpg);
+    -webkit-animation-delay: 30s;
+    -moz-animation-delay: 30s;
+    -o-animation-delay: 30s;
+    -ms-animation-delay: 30s;
+    animation-delay: 30s; 
+}
+.cb-slideshow li:nth-child(2) div { 
+    -webkit-animation-delay: 6s;
+    -moz-animation-delay: 6s;
+    -o-animation-delay: 6s;
+    -ms-animation-delay: 6s;
+    animation-delay: 6s; 
+}
+.cb-slideshow li:nth-child(3) div { 
+    -webkit-animation-delay: 12s;
+    -moz-animation-delay: 12s;
+    -o-animation-delay: 12s;
+    -ms-animation-delay: 12s;
+    animation-delay: 12s; 
+}
+.cb-slideshow li:nth-child(4) div { 
+    -webkit-animation-delay: 18s;
+    -moz-animation-delay: 18s;
+    -o-animation-delay: 18s;
+    -ms-animation-delay: 18s;
+    animation-delay: 18s; 
+}
+.cb-slideshow li:nth-child(5) div { 
+    -webkit-animation-delay: 24s;
+    -moz-animation-delay: 24s;
+    -o-animation-delay: 24s;
+    -ms-animation-delay: 24s;
+    animation-delay: 24s; 
+}
+.cb-slideshow li:nth-child(6) div { 
+    -webkit-animation-delay: 30s;
+    -moz-animation-delay: 30s;
+    -o-animation-delay: 30s;
+    -ms-animation-delay: 30s;
+    animation-delay: 30s; 
+}
+/* Animation for the slideshow images */
+@-webkit-keyframes imageAnimation { 
+    0% { opacity: 0;
+    -webkit-animation-timing-function: ease-in; }
+    8% { opacity: 1;
+         -webkit-animation-timing-function: ease-out; }
+    17% { opacity: 1 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-moz-keyframes imageAnimation { 
+    0% { opacity: 0;
+    -moz-animation-timing-function: ease-in; }
+    8% { opacity: 1;
+         -moz-animation-timing-function: ease-out; }
+    17% { opacity: 1 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-o-keyframes imageAnimation { 
+    0% { opacity: 0;
+    -o-animation-timing-function: ease-in; }
+    8% { opacity: 1;
+         -o-animation-timing-function: ease-out; }
+    17% { opacity: 1 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-ms-keyframes imageAnimation { 
+    0% { opacity: 0;
+    -ms-animation-timing-function: ease-in; }
+    8% { opacity: 1;
+         -ms-animation-timing-function: ease-out; }
+    17% { opacity: 1 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@keyframes imageAnimation { 
+    0% { opacity: 0;
+    animation-timing-function: ease-in; }
+    8% { opacity: 1;
+         animation-timing-function: ease-out; }
+    17% { opacity: 1 }
+    25% { opacity: 0 }
+    100% { opacity: 0 }
+}
+/* Animation for the title */
+@-webkit-keyframes titleAnimation { 
+    0% { opacity: 0 }
+    8% { opacity: 1 }
+    17% { opacity: 1 }
+    19% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-moz-keyframes titleAnimation { 
+    0% { opacity: 0 }
+    8% { opacity: 1 }
+    17% { opacity: 1 }
+    19% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-o-keyframes titleAnimation { 
+    0% { opacity: 0 }
+    8% { opacity: 1 }
+    17% { opacity: 1 }
+    19% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@-ms-keyframes titleAnimation { 
+    0% { opacity: 0 }
+    8% { opacity: 1 }
+    17% { opacity: 1 }
+    19% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@keyframes titleAnimation { 
+    0% { opacity: 0 }
+    8% { opacity: 1 }
+    17% { opacity: 1 }
+    19% { opacity: 0 }
+    100% { opacity: 0 }
+}
+
+  
+
+
+
+   </style>
+            <t t-call="web.login_layout">
+<body id="page">
+  <div class="limiter">
+    <div class="container-login100">
+      <ul class="cb-slideshow">
+            <li><span>Image 01</span></li>
+            <li><span>Image 02</span></li>
+            <li><span>Image 03</span></li>
+            <li><span>Image 04</span></li>
+            <li><span>Image 05</span></li>
+            <li><span>Image 06</span></li>
+            </ul>
+            <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+             <span class="login100-form-title p-b-50"> <img src="/obione_web_login/static/src/img/logo1.png"  width="380" height="135" style="padding-top:0px;" /> </span>
+             <div style="height:0px;">
+                  
+              </div> 
+                <form class="o_database_list field-db" role="form" t-attf-action="/web/login{{ '?debug' if debug else '' }}" method="post" onsubmit="this.action = this.action + location.hash">
+                   <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                   
+              <div class="o_database_list field-db" t-if="databases and len(databases) &gt; 1">
+                        <div class="input-group" style="padding:8px; margin-left:25px;">
+                            <input type="text" name="db" t-att-value="request.db" id="db" class="form-control" required="required" readonly="readonly"/>
+                            <span class="input-group-btn ">
+                       <a href="/web/database/selector" class="btn btn-default btn-select">Select <i class="fa fa-database"></i></a>
+                      </span>
+                  </div>
+              </div>
+
+              <div class="wrap-input100">
+                        <label for="login" class="label-input100" style="padding-top:20px;"><i class="fa fa-user" style="width:15px;"></i>Username</label>
+                        <input type="text" style="text-align:center;" name="login" t-att-value="login" id="login"  class="input100" required="required" autofocus="autofocus"/>
+              </div>
+
+              <div class="wrap-input100">
+                        <label for="password" class="label-input100" ><i class="fa fa-lock" style="width:20px;"></i>Password</label>
+                        <input type="password" style="text-align:center;"  name="password" id="password" class="input100" required="required" t-att-autofocus="'autofocus' if login else None"/>
+              </div>
+
+                    <p class="alert alert-danger" t-if="error">
+                        <t t-esc="error"/>
+                    </p>
+                    <p class="alert alert-success" t-if="message">
+                        <t t-esc="message"/>
+                    </p>
+                    <div style="padding:20px 120px;">
+                    <input name="redirect" type="hidden">
+                    <button class="button button1" type="submit" style="padding:10px 46px; "><b>LOGIN</b></button></input>                    </div>
+                    <div class="text-center" t-if="not disable_footer">
+                        <a href="https://www.google.com" target="_blank" style="color:gray;">Configured by <span>DIGIPRIME INC.</span></a>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </body>
+            </t>
+        </template>
+  <!-- End -->
+</odoo>

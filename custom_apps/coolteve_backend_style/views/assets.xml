@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+		<template id="assets_backend" name="CooLTEVE Theme" inherit_id="web.assets_backend">
+			<xpath expr=".">
+				<link rel="stylesheet" href="/coolteve_backend_style/static/src/css/font.less"/>
+				<link rel="stylesheet" href="/coolteve_backend_style/static/src/css/style.less"/>
+				<!-- <link rel="stylesheet" href="/coolteve_backend_style/static/src/css/AdminLTE.css"/> -->
+				<link rel="stylesheet" href="/coolteve_backend_style/static/src/css/skins/_all-skins.css"/>
+
+				<script type="text/javascript" src="/coolteve_backend_style/static/src/js/jquery.slimscroll.min.js"></script>
+				<script type="text/javascript" src="/coolteve_backend_style/static/src/js/coolteve-adminlte.js"></script>
+				<script type="text/javascript" src="/coolteve_backend_style/static/src/js/scripts.js"></script>
+				<script type="text/javascript" src="/coolteve_backend_style/static/src/js/hide_left_sidebar.js"></script>
+			</xpath>
+		</template>
+
+		<template id="assets_login" inherit_id="web.assets_frontend">
+			<xpath expr="." position="inside">
+				<link rel="stylesheet" href="/coolteve_backend_style/static/src/css/font.less"/>
+				<link rel="stylesheet" href="/coolteve_backend_style/static/src/css/login.less"/>
+			</xpath>
+		</template>
+	</data>
+</odoo>

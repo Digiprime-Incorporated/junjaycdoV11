@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<record id="skit_hr_employee_view_form" model="ir.ui.view">
+		    <field name="name">skit.hr.employee.view.form</field>
+		    <field name="model">hr.employee</field>
+		    <field name="inherit_id" ref="hr.view_employee_form"/>
+		    <field name="arch" type="xml">
+		        <data>
+		            <xpath expr="//page[@name='public']" position="replace">
+		         		<page name="public" string="Public Information">
+		                    <group>
+		                        <group string="Contact Information">
+		                            <field name="address_id"
+		                                context="{'show_address': 1}"
+		                                options='{"always_reload": True, "highlight_first_line": True}'/>
+		                            <field name="work_location"/>
+		                            <field name="work_email" widget="email"/>
+		                            <field name="mobile_phone"/>
+		                            <field name="work_phone"/>
+		                        </group>
+		                        <group string="Position">
+		                            <field name="department_id"/>
+		                           	<field name="job_id" string="Job Title"/>
+		    						<field name="report_next_job_id"/>
+		                            <field name="parent_id"/>
+		                            <field name="coach_id"/>
+		                            <field name="resource_calendar_id"/>
+		                        </group>
+		                    </group>
+		                    <field name="notes" placeholder="Other Information ..." colspan="4"/>
+		                </page>
+		            </xpath>
+		        </data>
+	        </field>
+		</record>
+		<record id="skit_view_employee_tree" model="ir.ui.view">
+		    <field name="name">skit.hr.employee.tree</field>
+		    <field name="model">hr.employee</field>
+		    <field name="inherit_id" ref="hr.view_employee_tree"/>
+		    <field name="arch" type="xml">
+		    	<data>
+		            <xpath expr="//tree//field[@name='job_id']" position="replace">
+		               <field name="job_id" string="Job Title"/>
+		               <field name="report_next_job_id"/>
+		               <field name="user_id"/>
+		            </xpath>
+		        </data>
+		     </field>
+		</record>
+		
+		<record id="skit_view_hr_job_form" model="ir.ui.view">
+		    <field name="name">skit.hr.job.view.form</field>
+		    <field name="model">hr.job</field>
+		    <field name="inherit_id" ref="hr.view_hr_job_form"/>
+		    <field name="arch" type="xml">
+		        <data>
+		            <xpath expr="//group[@name='recruitment']" position="replace">
+		            	<group name="recruitment">
+                        	<field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                            <field name="department_id"/>
+                            <field name="report_next_job_id"/>
+                            <field name="current_occ_id"/>
+			            	<field name="current_occupant_id" invisible="1"/>
+			            	<field name="budget_override"/>
+			            	<field name="delegate_user_id"/>
+                            <field name="no_of_recruitment"/>
+                       </group>
+		            </xpath>
+		             <xpath expr="//sheet//div[3]" position="after">
+		             	<notebook>
+		             		<page string="Approval Limits">
+		             			<field name="approval_limit_ids"  widget="one2many_list"  mode="tree,kanban">
+				            		<tree>
+				            			<field name="ir_model_id" required="1"/>
+						            	<field name="approval_limit"/>
+						            	<field name="increase_limit"/>
+				            		</tree>
+				            		<form>
+				            			<group>
+					            			<field name="ir_model_id" required="1"/>
+							            	<field name="approval_limit"/>
+							            	<field name="increase_limit"/>
+				            			</group>
+				            		</form>
+			            		</field>
+		             		</page>
+		             	</notebook>
+		             </xpath>
+		       </data>
+		   </field>
+		</record>
+		<record id="skit_view_hr_job_tree" model="ir.ui.view">
+		    <field name="name">skit.hr.job.tree</field>
+		    <field name="model">hr.job</field>
+		    <field name="inherit_id" ref="hr.view_hr_job_tree"/>
+		    <field name="arch" type="xml">
+		    	<data>
+		            <xpath expr="//tree//field[@name='name']" position="replace">
+		               	<field name="name" string="Job Title"/>
+		               	<field name="report_next_job_id"/>
+		               	<field name="current_occ_id"/>
+		            	<field name="current_occupant_id" invisible="1"/>
+		            	<field name="budget_override"/>
+		            	<field name="delegate_user_id"/>
+		            </xpath>
+		        </data>
+		     </field>
+		</record>
+		
+		<!-- Job Title menu -->
+		<menuitem
+		     id="menu_view_job_form"
+		     action="hr.action_hr_job"
+		     parent="hr.menu_human_resources_configuration"
+		     name="Job Titles"
+		     groups="base.group_no_one"
+		     sequence="2"/>
+</odoo>

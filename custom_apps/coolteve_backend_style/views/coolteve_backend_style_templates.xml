@@ -1,0 +1,213 @@
+<odoo>
+    <data>
+        <template id="coolteve_menu_secondary" name="menu_secondary_coolteve assets" inherit_id="web.menu_secondary">
+            <xpath expr="//div[hasclass('o_sub_menu_footer')]" position="replace" />
+
+            <xpath expr="//div[hasclass('o_sub_menu_content')]" position="replace">
+                <div class="o_sub_menu_content">
+                    <t t-foreach="menu_data['children']" t-as="menu">
+                        <div style="display: none" class="oe_secondary_menu" t-att-data-menu-parent="menu['id']">
+                            <ul class="sidebar-menu" data-widget="tree">
+                                <li class="header">MAIN NAVIGATION</li>
+                                <t t-foreach="menu['children']" t-as="menu">
+                                    <t t-if="menu['children']">
+                                        <li class="treeview">
+                                            <a t-att-data-menu-xmlid="menu.get('xmlid')" href="#">
+                                                <t t-esc="menu['name']" />
+                                                <span class="pull-right-container">
+                                                    <i class="fa fa-angle-left pull-right"></i>
+                                                </span>
+                                            </a>
+                                            <t t-call="coolteve_backend_style.coolteve_menu_secondary_submenu"/>
+                                        </li>
+                                    </t>
+                                    <t t-if="not menu['children']">
+                                        <li>
+                                            <a t-att-href="'/web%s#menu_id=%s&amp;action=%s' % (debug_param, menu['id'], menu['action'] and menu['action'].split(',')[1] or '')" t-att-data-menu="menu['id']" t-att-data-menu-xmlid="menu.get('xmlid')" t-att-data-action-model="menu['action'] and menu['action'].split(',')[0] or None" t-att-data-action-id="menu['action'] and menu['action'].split(',')[1] or None">
+                                                <t t-esc="menu['name']"/>
+                                            </a>
+                                            <t t-call="coolteve_backend_style.coolteve_menu_secondary_submenu"/>
+                                        </li>
+                                    </t>
+                                </t>
+                            </ul>
+
+                        </div>
+                    </t>
+                </div>
+            </xpath>
+        </template>
+
+        <template id="coolteve_menu_secondary_submenu">
+            <!-- <t t-if="menu['children']"> -->
+            <ul class="treeview-menu">
+                <t t-foreach="menu['children']" t-as="menu">
+                    <t t-if="menu['children']">
+                        <li class="treeview" >
+                            <a href="#" >
+                                <i class="fa fa-circle-o"></i>
+                                <t t-esc="menu['name']" />
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <t t-call="coolteve_backend_style.coolteve_menu_secondary_submenu" />
+                        </li>
+                    </t>
+                    <t t-if="not menu['children']">
+                        <li>
+                            <a t-att-href="'/web%s#menu_id=%s&amp;action=%s' % (debug_param, menu['id'], menu['action'] and menu['action'].split(',')[1] or '')" t-att-data-menu="menu['id']" t-att-data-menu-xmlid="menu.get('xmlid')" t-att-data-action-model="menu['action'] and menu['action'].split(',')[0] or None" t-att-data-action-id="menu['action'] and menu['action'].split(',')[1] or None">
+                                <i class="fa fa-circle-o"></i>
+                                <t t-esc="menu['name']" />
+                            </a>
+                        </li>
+                    </t>
+
+
+                    <!-- <li>
+                        <t t-if="menu['children']">
+                            <a href="#" >
+                                <i class="fa fa-circle-o"></i>
+                                <t t-esc="menu['name']" />
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                        </t>
+                        <t t-if="not menu['children']">
+                            <a t-att-href="'/web%s#menu_id=%s&amp;action=%s' % (debug_param, menu['id'], menu['action'] and menu['action'].split(',')[1] or '')" t-att-data-menu="menu['id']" t-att-data-menu-xmlid="menu.get('xmlid')" t-att-data-action-model="menu['action'] and menu['action'].split(',')[0] or None" t-att-data-action-id="menu['action'] and menu['action'].split(',')[1] or None">
+                                <i class="fa fa-circle-o"></i>
+                                <t t-esc="menu['name']" />
+                            </a>
+                        </t>
+                        <t t-if="menu['children']">
+                            <t t-call="coolteve_backend_style.coolteve_menu_secondary_submenu" />
+                        </t>
+                    </li> -->
+                </t>
+            </ul>
+            <!-- </t> -->
+        </template>
+
+        <!-- <template id="layout" inherit_id="web.layout" name="CooLTEveLayout Layout Inherit">
+            <t t-set="body_classname" t-value="'skin-blue'"/>
+            
+        </template> -->
+
+        <template id="layout" inherit_id="web.layout">
+            <xpath expr="//body" position="inside">
+                <div class="skin-style hide">
+                    <t t-esc="request.params.get('theme_skin_style')" />
+                </div>
+                <!-- <t t-esc="request.params.get('theme_skin_style')" /> -->
+            </xpath>
+            <!-- <xpath expr="//body[hasclass('o_web_client')]" position="attributes">
+                <attribute name="class">o_web_client <t t-esc="request.params.get('theme_skin_style')" /></attribute>
+            </xpath> -->
+
+
+        </template>
+
+        <!-- <template id="login_layout" inherit_id="web.login_layout" name="CooLTEveLogin Layout Inherit">
+            <xpath expr="//t[@t-set='body_classname']" position="after">
+                <t t-set="body_classname" t-value="'hold-transition login-page'"/>
+            </xpath>
+
+            <xpath expr="//div[hasclass('row')]" position="attributes">
+                <attribute name="class">login-box</attribute>
+            </xpath>
+
+            <xpath expr="//div[hasclass('o_database_list')]" position="replace" />
+
+            <xpath expr="//div[hasclass('login-box')]" position="inside">
+                <div class="login-logo">
+                </div>
+
+                <div class="login-box-body">
+                    <div class="login-logo text-center">
+                        <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}"/>
+                    </div>
+                    <p class="login-box-msg">Sign in to start your session</p>
+
+                    <t t-raw="0"/>
+
+                    <t t-if="not disable_database_manager">
+                        <a class="" href="/web/database/manager">Manage Databases</a>
+                    </t>
+                </div>
+            </xpath>
+
+
+            <xpath expr="//div[hasclass('o_database_list')]" position="attributes">
+                <attribute name="class">login-logo</attribute>
+            </xpath>
+
+            <xpath expr="//div[hasclass('text-center')]/img" position="attributes">
+                <attribute name="class">company_logo</attribute>
+            </xpath>
+        </template>
+
+        <template id="coolteve_login" inherit_id="web.login" name="Login Inherit">
+            <xpath expr="//label[@for='login']" position="replace" />
+            <xpath expr="//label[@for='password']" position="replace" />
+
+            <xpath expr="//div[hasclass('field-login')]" position="attributes">
+                <attribute name="class">form-group has-feedback</attribute>
+            </xpath>
+
+            <xpath expr="//div[hasclass('field-password')]" position="attributes">
+                <attribute name="class">form-group has-feedback</attribute>
+            </xpath>
+
+            <xpath expr="//input[@name='login']" position="attributes">
+                <attribute name="placeholder">Email ...</attribute>
+                <attribute name="autocomplete">off</attribute>
+                <attribute name="autocorrect">off</attribute>
+                <attribute name="class">form-control</attribute>
+            </xpath>
+
+            <xpath expr="//input[@name='password']" position="attributes">
+                <attribute name="placeholder">Password</attribute>
+                <attribute name="autocomplete">off</attribute>
+                <attribute name="autocorrect">off</attribute>
+                <attribute name="class">form-control</attribute>
+            </xpath>
+
+            <xpath expr="//input[@name='login']" position="after">
+                <span class="fa fa-envelope form-control-feedback"></span>
+            </xpath>
+
+            <xpath expr="//input[@name='password']" position="after">
+                <span class="fa fa-lock form-control-feedback"></span>
+            </xpath>
+
+            <xpath expr="//form[hasclass('oe_login_form')]" position="attributes">
+                <attribute name="class"></attribute>
+            </xpath>
+
+
+             <xpath expr="//label[@for='db']" position="replace" />
+
+
+            <xpath expr="//input[@name='password']" position="attributes">
+                <attribute name="placeholder">Password ...</attribute>
+            </xpath> -->
+
+            <!-- <xpath expr="//span[hasclass('input-group-btn')]/a[@href='/web/database/selector']" position="replace">
+                <a href="/web/database/selector" class="btn btn-default btn-select">
+                    <i class="fa fa-database"></i>
+                </a>
+            </xpath> -->
+
+            <!-- <xpath expr="//div[hasclass('oe_login_buttons')]" position="replace">
+                <div class="row">
+                    <div class="col-xs-8"></div>
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    </div>
+                </div>
+            </xpath>
+        </template> -->
+
+    </data>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Email template-->
+        <record id="po_request_approval_email_template" model="mail.template">
+            <field name="name">Approval Request for Purchase Request</field>
+            <field name="model_id" ref="skit_po_request.model_purchase_request"/>
+            <field name="subject">Approval Request for Purchase Request</field>
+            <field name="email_from">${('"%s" &lt;%s&gt;' % (object.company_id.name, object.company_id.email))|safe}</field>
+            <field name="email_to">${object.partner_id.email | safe}</field>
+            <field name="body_html" type="html">
+					<div>
+					% set full_url = object.get_full_url()
+					<p>Dear ${object.partner_id.name},</p>
+                    <p> You have a request for ${object.name} marked as urgent and is pending to approve. </p>
+                    <p> Please
+                    <b><a href="${full_url}">Click here</a></b> to review the document. </p>
+                    </div>
+            </field>
+            <field name="auto_delete" eval="True"/>
+            <field name="user_signature" eval="False"/>
+        </record>
+        </data>
+</odoo>

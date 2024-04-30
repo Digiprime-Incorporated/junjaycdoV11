@@ -1,0 +1,5 @@
+thead.sticky-TH.floating-TH {
+    /* box-shadow: 1px 1px 9px rgba(0,0,0,.5); */
+    /* box-shadow: 0 10px 9px -9px rgba(0,0,0,.5); */
+    box-shadow: 0 10px 9px -9px rgba(128, 128, 128, 0.7);
+}

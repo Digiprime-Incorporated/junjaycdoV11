@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- <data> -->
+	<record id="view_config_settings" model="ir.ui.view">
+		<field name="name">Sticky Table Header Settings</field>
+		<field name="model">res.config.settings</field>
+		<field name="priority" eval="50"/>
+		<field name="inherit_id" ref="base.res_config_settings_view_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//div[hasclass('settings')]" position="inside">
+				<div class="app_settings_block" data-string="Sticky Table Header" string="Sticky Table Header" data-key="sticky_th">
+					<h2>Sticky Table Header</h2>
+						<div class="row mt16 o_settings_container">
+							<div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="sticky_th_shadow"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="sticky_th_shadow"/>
+                                    <div class="text-muted">
+                                        <!-- Add shadow on table header while floating <br/> -->
+                                        Uncheck it, if your installed theme has own style of table header's shadow.
+                                    </div>     
+                                </div>
+                            </div>
+							<div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="sticky_th_noborder"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="sticky_th_noborder"/>
+                                    <div class="text-muted">
+                                        Beautify the table header by make it look more clean.
+                                    </div>     
+                                </div>
+                            </div>
+							<div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="sticky_th_always"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="sticky_th_always"/>
+                                    <div class="text-muted">
+                                        Set table header in ListView Mode as always sticky.
+                                        If checked, it prevents any flicker in beginning of scrolling long list data.
+                                    </div>
+                                    <div class="mt8 mb8" attrs="{'invisible': [('sticky_th_shadow', '!=', True)], 'readonly': [('sticky_th_always','!=', True)]}">
+                                        <div style="width:25px; display:inline-block;">
+                                        <field name="sticky_th_alwaysshadow"/>
+                                        </div>
+                                        <label for="sticky_th_alwaysshadow"/>
+                                        
+                                    </div>
+                                </div>
+
+                                
+                                
+                            </div>
+							<div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="sticky_th_pivot"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="sticky_th_pivot"/>
+                                    <div class="text-muted">
+                                        Check it to apply sticky header into pivot. <br/>
+                                    </div>     
+                                </div>
+                            </div>
+
+						</div>
+												
+				</div>
+			</xpath>
+		</field>
+	</record>
+<!-- 
+	<record id="action_config_settings" model="ir.actions.act_window">
+		<field name="name">Settings</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">res.config.settings</field>
+		<field name="view_mode">form</field>
+		<field name="target">inline</field>
+		<field name="context">{'module' : 'sl_asset'}</field>
+	</record> -->
+
+</odoo>

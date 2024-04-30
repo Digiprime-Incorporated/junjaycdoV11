@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_voucher">
+        <t t-call="print_voucher.external_layout">
+            <t t-foreach="docs" t-as="o">
+            <t t-call="print_voucher.external_layout"/>
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-if="o.payment_type == 'inbound' ">
+                            <div style="text-align:center;">
+                                <p><b>RECEIPT VOUCHER</b></p>
+                            </div>
+                        </t>
+                        
+                        <t t-if="o.payment_type == 'outbound' ">
+                            <div style="text-align:center;">
+                                <p><b>PAYMENT VOUCHER</b></p>
+                            </div>
+                        </t><br/><br/>
+                        
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div style="text-align:left;">
+                                    <t t-if="o.amount">Amount : <span t-field="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></t>
+                                </div>
+                            </div>
+                            <div class="col-xs-6" >
+                                <div style="padding-left:200px;">
+                                    <t t-if="o.name">No : <span t-field="o.name"/></t>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xs-12 ">
+                                <div style=" padding-left:631px; padding-top:2px;" >
+                                    <t t-if="o.payment_date">Date : <span t-field="o.payment_date"/></t>
+                                </div>
+                            </div>
+                        </div><br/>
+                        
+                        <t t-if="o.payment_type == 'inbound' ">
+                            <div id="val"  style="margin-bottom: 0px ! important;padding-left: 160px;height: 0px;">
+                                <t t-if="o.partner_id">
+                                    <span t-field="o.partner_id"/>
+                                </t>
+                            </div>
+                            <div  id="label" style="margin-top: 0px;">Received from  Mr. / M /s.</div>
+                            <p id="dots" style="padding-left: 152px;margin-top: -15px;">
+................................................................................................................................................................................
+                            </p>
+                        </t>
+                        
+                        <t t-if="o.payment_type == 'outbound' ">
+                            <div id="val"  style="margin-bottom: 0px ! important;padding-left: 47px;height: 0px;">
+                                <t t-if="o.partner_id">
+                                    <span t-field="o.partner_id"/>
+                                </t>
+                            </div>
+                            <div  id="label" style="margin-top: 0px;">Paid to</div>
+                            <p id="dots" style="padding-left: 46px;margin-top: -15px;">
+              ...........................................................................................................................................................................................................
+                            </p>
+                        </t>
+                        
+                        <div id="val"  style="margin-bottom: 0px ! important;padding-left: 52px;height: 0px;">
+                            <t t-if="o.amount">
+                                <span t-esc="o.currency_id.amount_to_text(o.amount)"/>
+                            </t>
+                        </div>
+                        <div  id="label" style="margin-top: 0px;">Sum of</div>
+                            <p id="dots" style="padding-left: 44px;margin-top: -15px;">
+             ...........................................................................................................................................................................................................
+                            </p>
+                        <div id="val"  style="margin-bottom: 0px ! important;padding-left: 50px;height: 0px;">
+                            <t t-if="o.communication">
+                                <span t-field="o.communication"/>
+                            </t>
+                        </div>
+                        
+                        <div  id="label" style="margin-top: 0px;">Being</div>
+                        <p id="dots" style="padding-left:40px;margin-top: -15px;">
+               ............................................................................................................................................................................................................
+                        </p><br/><br/><br/><br/>
+                        
+                        <div class="row">
+                            <div class="col-xs-4" style="text-align:center">
+                                <p style="text-align:center;"><span t-field="o.create_uid"/></p>
+                                <p style="text-align:center;">Account</p>
+                            </div>
+                            <div class="col-xs-4" style="text-align:center">
+                                <p style="text-align:center;">...............................</p>
+                                <p style="text-align:center;">Manager</p>
+                            </div>
+                            <div class="col-xs-4" style="text-align:center">
+                                <p style="text-align:center;">...............................</p>
+                                <p style="text-align:center;">Receiver's Signature</p>
+                            </div>
+                        </div><br/>
+                        
+                        <t t-call="print_voucher.report_footer_custom" /><br/><br/>
+                        <div id="breaker" style="margin-bottom:3px;margin-top:10px">
+                            <img src="/print_voucher/static/src/img/cutter.png" style="height: 20px;"/>
+                            <div id="dots" style="padding-left: 13px;margin-top: -25px;">
+                        .............................................................................................................................................................................................................
+                            </div>
+                        </div><br/>
+                        
+                        <div id="watermark" >
+                            <p style="position:absolute;padding-left:125px;padding-right:200px;padding-top:175px;color:lightgrey;font-size:80px;transform:rotate(15deg);-webkit-transform:rotate(320deg);">Office Copy</p>
+                        </div>
+                        
+                        <div id="container" style="position:relative;">
+                            <div class="row" style="padding-bottom:10px">
+                                <div class="col-sm-12">
+                                    <t t-call="print_voucher.report_header_custom"/>
+                                    <div class="header"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <t t-if="o.payment_type == 'inbound'">
+                                        <div colspan="3" style="padding-left:350px">
+                                            <p style="padding-top:2%"><b>RECEIPT VOUCHER</b></p>
+                                        </div>
+                                    </t>
+                                    <t t-if="o.payment_type == 'outbound'">
+                                        <div colspan="3" style="padding-left:350px">
+                                            <p style="padding-top:2%"><b>PAYMENT VOUCHER</b></p>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                            
+                            <div class="row" >
+                                <div class="col-xs-6">
+                                    <div style="text-align:left;">
+                                        <t t-if="o.amount">Amount : <span t-field="o.amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/></t>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6" >
+                                    <div style="padding-left:200px;">
+                                        <t t-if="o.name">No : <span t-field="o.name"/></t>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-xs-12 ">
+                                    <div style=" padding-left:631px; padding-top:2px;" >
+                                        <t t-if="o.payment_date">Date : <span t-field="o.payment_date"/></t>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="data" style="margin-top:3%;">
+                                <t t-if="o.payment_type == 'inbound' ">
+                                    <div id="val"  style="margin-bottom: 0px ! important;padding-left: 160px;height: 0px;">
+                                        <t t-if="o.partner_id"><span t-field="o.partner_id"/></t>
+                                    </div>
+                                    <div  id="label" style="margin-top: 0px;">Received from  Mr. / M /s.</div>
+                                    <p id="dots" style="padding-left: 152px;margin-top: -15px;">
+                                    ................................................................................................................................................................................
+                                    </p>
+                                </t>
+                                
+                                <t t-if="o.payment_type == 'outbound' ">
+                                    <div id="val"  style="margin-bottom: 0px ! important;padding-left: 47px;height: 0px;">
+                                        <t t-if="o.partner_id"><span t-field="o.partner_id"/></t>
+                                    </div>
+                                    <div  id="label" style="margin-top: 0px;">Paid to</div>
+                                    <p id="dots" style="padding-left: 46px;margin-top: -15px;">
+                                ...........................................................................................................................................................................................................
+                                    </p>
+                                </t>
+                                
+                                <div id="val"  style="margin-bottom: 0px ! important;padding-left: 52px;height: 0px;">
+                                    <t t-if="o.amount"><span t-esc="o.currency_id.amount_to_text(o.amount)"/></t>
+                                </div>
+                                <div  id="label" style="margin-top: 0px;">Sum of</div>
+                                <p id="dots" style="padding-left: 44px;margin-top: -15px;">
+                                ...........................................................................................................................................................................................................
+                                </p>
+                                <div id="val"  style="margin-bottom: 0px ! important;padding-left: 50px;height: 0px;">
+                                    <t t-if="o.communication"><span t-field="o.communication"/></t>
+                                </div>
+                                <div  id="label" style="margin-top: 0px;">Being</div>
+                                <p id="dots" style="padding-left:40px;margin-top: -15px;">
+                                ...........................................................................................................................................................................................................
+                                </p><br/><br/><br/><br/>
+                                
+                                <div class="row" style="bposition:relative" >
+                                    <div class="col-xs-4" style="text-align:center">
+                                        <p style="text-align:center;"><span t-field="o.create_uid"/></p>
+                                        <p style="text-align:center;">Account</p>
+                                    </div>
+                                    <div class="col-xs-4" style="text-align:center">
+                                        <p style="text-align:center;">...............................</p>
+                                        <p style="text-align:center;">Manager</p>
+                                    </div>
+                                    <div class="col-xs-4" style="text-align:center">
+                                        <p style="text-align:center;">...............................</p>
+                                        <p style="text-align:center;">Receiver's Signature</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

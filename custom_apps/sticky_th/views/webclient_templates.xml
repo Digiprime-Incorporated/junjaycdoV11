@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="Sticky Table Header - Core Assets" inherit_id="web.assets_backend" priority="18">
+
+        <xpath expr="//link[last()]" position="after">
+          <link rel="stylesheet" href="/sticky_th/static/src/css/sticky_th.css" type="text/css"/>
+        </xpath>
+        
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/sticky_th/static/lib/jquery.debounce/jquery.ba-throttle-debounce.js"></script>
+            <script type="text/javascript" src="/sticky_th/static/lib/jquery.mresize/mresize.js"></script>
+            <script type="text/javascript" src="/sticky_th/static/src/js/sticky_table_headers.js"></script>
+            <script type="text/javascript" src="/sticky_th/static/src/js/web_sticky_th.js"></script>
+            <!-- <script type="text/javascript" src="/sticky_th/static/src/js/web_sticky_pivot.js"></script> -->
+            <script type="text/javascript" src="/sticky_th/static/src/js/web_sticky_config.js"></script>
+            <!-- <script type="text/javascript" src="/sticky_th/static/src/js/field/fields.js"></script> -->
+        </xpath>
+    </template>
+    
+    <template id="pivot_assets_backend" name="Sticky Pivot Header - Core Assets" inherit_id="web.assets_backend" active="True" priority="18">
+
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/sticky_th/static/src/js/web_sticky_pivot.js"></script>
+        </xpath>
+    </template>
+    
+    <template id="sticky_th_always" name="sticky_th always sticky" inherit_id="web.assets_backend" active="True" priority="19">
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/sticky_th/static/src/js/web_sticky_th_always.js" t-ignore="true"></script>
+        </xpath>
+    </template>
+    
+    <template id="sticky_th_always2" name="sticky_th always sticky shadow" inherit_id="web.assets_backend" active="False" priority="19">
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="/sticky_th/static/src/js/web_sticky_th_always_shadow.js" t-ignore="true"></script>
+        </xpath>
+    </template>
+    
+    
+    
+    <template id="sticky_th_shadow" inherit_id="web.assets_backend" name="sticky_th_shadow css" active="True" priority="29">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" href="/sticky_th/static/src/css/sticky_th_shadow.css" type="text/css" t-ignore="true"/>
+        </xpath>
+    </template>
+    
+    <template id="sticky_th_noborderbottom" inherit_id="web.assets_backend" name="sticky_th_noborderbottom css" active="True" priority="29">
+        <xpath expr="//link[last()]" position="after">
+            <link rel="stylesheet" href="/sticky_th/static/src/css/sticky_th_noborder.css" type="text/css" t-ignore="true"/>
+        </xpath>
+    </template>
+    
+</odoo>

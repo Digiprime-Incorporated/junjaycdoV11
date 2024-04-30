@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="0">
+    	<record id="_coolteve_theme_skin_style_" model="ir.config_parameter">
+            <field name="key">theme_skin_style</field>
+            <field name="value">skin-blue</field>
+        </record>
+    </data>
+</openerp>

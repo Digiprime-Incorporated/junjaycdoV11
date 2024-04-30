@@ -1,0 +1,17 @@
+
+
+1) v 11.0.0.6
+
+-> Solve issue of  wrong qty update on purchase order cancel.
+
+
+Date: 07/06/2019
+version: 11.0.0.7
+issue:- super not call in unlink method
+
+
+version: 11.0.0.8
+issue:- deleted stock journal enries
+
+version: 11.0.0.9
+issue:- singleton error
